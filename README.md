@@ -27,16 +27,32 @@ when the network disappears.
 
 ## Run it
 
+The compiled output in `public/app/` is **committed**, so the app runs with **no
+build step** — just serve the `public/` folder with any static server.
+
 ```bash
-# 1. Compile TypeScript -> public/app/ (uses local tsc, no install needed)
-npm run build
-
-# 2. Serve the static app
+# Serve the static app (no install, no build required)
 npm run serve        # http://localhost:5173
+```
 
-# During development
+### Rebuilding after changing `src/`
+
+```bash
+npm install          # installs the TypeScript devDependency
+npm run build        # tsc -> public/app/
 npm run watch        # recompile on change
 ```
+
+### Deploying (static hosting)
+
+Deploy the **`public/`** directory as a static site with **no build command**.
+A `vercel.json` is included that does exactly this (`outputDirectory: public`,
+no build/install step, SPA rewrite to `index.html`). Any static host works —
+GitHub Pages, Netlify, Cloudflare Pages, S3, etc. — point it at `public/`.
+
+> Note: earlier a deploy failed with `sh: tsc: command not found` because the
+> host had no global TypeScript. That is now avoided entirely: the build output
+> is committed and the site deploys as pure static files with no build step.
 
 Open the URL on a phone-sized viewport for the intended experience. Toggle the
 device offline — the app keeps working and shows an **OFFLINE MODE** banner.

@@ -1,4 +1,3 @@
 node_modules/
-public/app/
 *.log
 .DS_Store
