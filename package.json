@@ -1,0 +1,13 @@
+{
+  "name": "survival-command",
+  "version": "1.0.0",
+  "description": "SURVIVAL COMMAND — a survival operating system for ordinary people. Offline-first emergency guidance.",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "watch": "tsc -p tsconfig.json --watch",
+    "serve": "node scripts/serve.mjs",
+    "clean": "rm -rf public/app"
+  },
+  "license": "MIT"
+}

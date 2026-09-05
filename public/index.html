@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#0b0f14" />
+    <meta
+      name="description"
+      content="SURVIVAL COMMAND — a calm emergency operations assistant. Offline-first survival guidance for ordinary people."
+    />
+    <title>SURVIVAL COMMAND</title>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icon.svg" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div id="offline-banner" class="offline-banner" hidden>
+      <span class="dot"></span>
+      OFFLINE MODE — Using locally stored emergency information.
+    </div>
+    <div id="app" class="app-root">
+      <div class="boot">
+        <div class="boot-logo">SURVIVAL&nbsp;COMMAND</div>
+        <div class="boot-sub">Loading local emergency knowledge…</div>
+      </div>
+    </div>
+    <nav id="tabbar" class="tabbar" hidden></nav>
+    <script type="module" src="/app/main.js"></script>
+    <script>
+      // Register the service worker for true offline capability.
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {
+            /* offline registration is best-effort */
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
